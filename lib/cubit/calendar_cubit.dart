@@ -14,10 +14,7 @@ class CalendarCubit extends Cubit<CalendarState> {
 
   ServiceAccountCredentials _clientCredentials;
 
-  ClientId _clientID = ClientId(
-    '1046815190841-mov7g8jf08bgbvciseu9e2542d6jd5dr.apps.googleusercontent.com',
-    '',
-  );
+  ClientId _clientID = ClientId(kClientIdIdentifier, '');
 
   CalendarCubit() : super(CalendarInitialState()) {
     _clientCredentials = ServiceAccountCredentials(
@@ -57,7 +54,7 @@ class CalendarCubit extends Cubit<CalendarState> {
 
       CalendarApi calendar = CalendarApi(client);
 
-      var result = await calendar.events.insert(event, kCalendarId);
+      Event result = await calendar.events.insert(event, kCalendarId);
       if (result.status == 'confirmed') {
         emit(
           AddCalendarState(

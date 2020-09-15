@@ -2,6 +2,8 @@ import 'package:googleapis/calendar/v3.dart' as Calendar;
 
 const kCalendarId = 'primary';
 const kScopes = const [Calendar.CalendarApi.CalendarScope];
+const kClientIdIdentifier =
+    '1046815190841-mov7g8jf08bgbvciseu9e2542d6jd5dr.apps.googleusercontent.com';
 const kCLIENT_EMAIL =
     'calendar-app-749@fluttercalendarapp.iam.gserviceaccount.com';
 const kPRIVATE_KEY =
