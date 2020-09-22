@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class EventsPage extends StatefulWidget {
+class CalandarPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _EventsPageState();
+  State<StatefulWidget> createState() => _CalandarPageState();
 }
 
-class _EventsPageState extends State<EventsPage> {
+class _CalandarPageState extends State<CalandarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ?Appbar
+      //? Appbar
       appBar: AppBar(
         title: Text('CalendarNotifier'),
         centerTitle: true,
       ),
 
-      // ?Body
+      //? Body
       body:
           // TODO: Check connection first
           null,
