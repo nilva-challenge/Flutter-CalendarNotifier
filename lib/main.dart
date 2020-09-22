@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-main() {
+import 'core/injection_container.dart' as di;
+import 'features/google_calender/presentation/bloc/calender_bloc.dart';
+import 'features/google_calender/presentation/pages/calender_page.dart';
+
+main() async {
+  await di.init();
   runApp(Root());
 }
 
@@ -9,8 +15,13 @@ class Root extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: null,
+    return BlocProvider<CalenderBloc>(
+      create: (_) => di.sl(),
+      child: MaterialApp(
+        title: 'Calendar App',
+        theme: ThemeData.dark(),
+        home: CalenderPage(),
+      ),
     );
   }
 }

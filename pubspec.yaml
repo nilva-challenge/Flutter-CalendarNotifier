@@ -26,6 +26,10 @@ dependencies:
   connectivity: ^0.4.9+2
   validators: ^2.0.0+1
 
+  googleapis: ^0.55.0
+  googleapis_auth: ^0.2.12
+  url_launcher: ^5.7.0
+
 
 # Some of these dev_dependencies might not be used in project
 #
