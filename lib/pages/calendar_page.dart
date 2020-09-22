@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_calendar_notifier/components/event_list_view.dart';
 
 class CalandarPage extends StatefulWidget {
   @override
@@ -17,9 +18,7 @@ class _CalandarPageState extends State<CalandarPage> {
       ),
 
       //? Body
-      body:
-          // TODO: Check connection first
-          null,
+      body: EventListView(),
     );
   }
 }
