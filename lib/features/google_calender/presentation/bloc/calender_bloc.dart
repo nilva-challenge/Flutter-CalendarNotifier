@@ -2,16 +2,30 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_calender/core/presentation/event_entity_convertor.dart';
-import 'package:flutter_calender/core/usecases/usecase.dart';
-import 'package:flutter_calender/features/google_calender/domain/repositories/event_entity_repository.dart';
-import 'package:flutter_calender/features/google_calender/domain/usecases/get_event_entities.dart';
-import 'package:flutter_calender/features/google_calender/domain/usecases/submit_event_entity.dart';
+import 'package:flutter_calender/core/error/failures.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_calender/features/google_calender/domain/entities/event_entity.dart';
+
+import '../../../../core/presentation/event_entity_convertor.dart';
+import '../../../../core/usecases/usecase.dart';
+import '../../domain/entities/event_entity.dart';
+import '../../domain/usecases/get_event_entities.dart';
+import '../../domain/usecases/submit_event_entity.dart';
 
 part 'calender_event.dart';
 part 'calender_state.dart';
+
+const network_failure_err_msg = 'Network failure. Make sure you are connected.';
+const auth_failure_err_msg = 'Google authentication failed.';
+const api_failure_err_msg = 'Google calendar failed.';
+const unknown_failure_err_msg = 'Unknown error accured.';
+
+String getAppropriateErrorMsg(Failure failure) {
+  if (failure is AuthFailure) return auth_failure_err_msg;
+  if (failure is NetworkFailure) return network_failure_err_msg;
+  if (failure is ApiFailure) return api_failure_err_msg;
+  if (failure is InvalidInputFailure) return failure.errMsg;
+  return unknown_failure_err_msg;
+}
 
 class CalenderBloc extends Bloc<CalenderEvent, CalenderState> {
   final GetEventEntities getEvents;
@@ -30,10 +44,11 @@ class CalenderBloc extends Bloc<CalenderEvent, CalenderState> {
     if (event is GetCalenderEvents) {
       yield CalenderLoading();
       var loadOutCome = await getEvents(NoParams());
-      loadOutCome.fold((l) async* {
-        yield CalenderError(errMsg: '', errType: CalenderErrorType.load);
-      }, (r) async* {
-        yield CalenderLoaded(r);
+      yield loadOutCome.fold((l) {
+        return CalenderError(
+            errMsg: getAppropriateErrorMsg(l), errType: CalenderErrorType.load);
+      }, (r) {
+        return CalenderLoaded(r);
       });
     }
     if (event is SubmitCalenderEvent) {
@@ -44,17 +59,20 @@ class CalenderBloc extends Bloc<CalenderEvent, CalenderState> {
         recurrence: event.recurrence,
         startDate: event.startDate,
       );
-      convertedValue.fold((l) async* {
+      yield* convertedValue.fold((l) async* {
         yield CalenderError(
-          errMsg: (l as InvalidInputFailure).errMsg,
+          errMsg: getAppropriateErrorMsg(l),
           errType: CalenderErrorType.submit,
         );
       }, (r) async* {
+        yield CalenderEventSubmitInProgress();
         var submitOutCome = await submitEvent(Params(r));
-        submitOutCome.fold((l) async* {
-          yield CalenderError(errMsg: '', errType: CalenderErrorType.submit);
-        }, (r) async* {
-          yield CalenderEventSubmitSuccess();
+        yield submitOutCome.fold((l) {
+          return CalenderError(
+              errMsg: getAppropriateErrorMsg(l),
+              errType: CalenderErrorType.submit);
+        }, (r) {
+          return CalenderEventSubmitSuccess();
         });
       });
     }

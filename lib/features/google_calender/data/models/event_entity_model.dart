@@ -10,21 +10,24 @@ const Map<String, RepeatMode> repeatRawToEnum = {
   'RRULE:FREQ=YEARLY': RepeatMode.yearly,
 };
 
+const Map<RepeatMode, String> repeatEnumToRaw = {
+  RepeatMode.none: null,
+  RepeatMode.daily: 'RRULE:FREQ=DAILY',
+  RepeatMode.weekly: 'RRULE:FREQ=WEEKLY',
+  RepeatMode.monthly: 'RRULE:FREQ=MONTHLY',
+  RepeatMode.yearly: 'RRULE:FREQ=YEARLY'
+};
+
 class EventEntityModel extends EventEntity {
-  final String id;
-  final String name;
-  final String description;
-  final DateTime startDate;
-  final DateTime dueDate;
   final String recurrenceRaw;
 
   EventEntityModel({
-    @required this.id,
-    @required this.name,
-    @required this.description,
-    @required this.dueDate,
+    @required id,
+    @required name,
+    @required description,
+    @required dueDate,
     this.recurrenceRaw,
-    this.startDate,
+    startDate,
   }) : super(
           id: id,
           name: name,
@@ -32,5 +35,16 @@ class EventEntityModel extends EventEntity {
           dueDate: dueDate,
           recurrence: repeatRawToEnum[recurrenceRaw],
           startDate: startDate,
+        );
+
+  EventEntityModel.fromEventEntity(EventEntity eventEntity)
+      : recurrenceRaw = repeatEnumToRaw[eventEntity.recurrence],
+        super(
+          id: eventEntity.id,
+          name: eventEntity.name,
+          description: eventEntity.description,
+          dueDate: eventEntity.dueDate,
+          recurrence: eventEntity.recurrence,
+          startDate: eventEntity.startDate,
         );
 }

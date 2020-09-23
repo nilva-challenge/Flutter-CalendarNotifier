@@ -11,7 +11,7 @@ class CalenderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* BlocProvider.of<CalenderBloc>(context).add(GetCalenderEvents()); */
+    BlocProvider.of<CalenderBloc>(context).add(GetCalenderEvents());
     return Scaffold(
       appBar: AppBar(
         title: Text('Calender App'),
@@ -20,9 +20,12 @@ class CalenderPage extends StatelessWidget {
         ],
       ),
       body: EventList(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => showBottomSheet(
-            context: context, builder: (_) => SubmitEventBottomSheet()),
+      floatingActionButton: Builder(
+        builder: (ctx) => FloatingActionButton(
+          child: Icon(Icons.playlist_add),
+          onPressed: () => showBottomSheet(
+              context: ctx, builder: (_) => SubmitEventBottomSheet()),
+        ),
       ),
     );
   }

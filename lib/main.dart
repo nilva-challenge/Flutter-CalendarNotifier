@@ -19,7 +19,9 @@ class Root extends StatelessWidget {
       create: (_) => di.sl(),
       child: MaterialApp(
         title: 'Calendar App',
-        theme: ThemeData.dark(),
+        theme: ThemeData.dark().copyWith(
+          accentColor: Colors.amber,
+        ),
         home: CalenderPage(),
       ),
     );

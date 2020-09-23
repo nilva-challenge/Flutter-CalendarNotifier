@@ -3,7 +3,7 @@ import 'package:flutter_calender/features/google_calender/domain/repositories/ev
 import 'package:flutter_calender/features/google_calender/domain/usecases/get_event_entities.dart';
 import 'package:flutter_calender/features/google_calender/domain/usecases/submit_event_entity.dart';
 import 'package:get_it/get_it.dart';
-import 'package:googleapis_auth/auth_io.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../features/google_calender/data/datasources/calender_remote_source.dart';
 import '../features/google_calender/presentation/bloc/calender_bloc.dart';
@@ -24,7 +24,14 @@ Future<void> init() async {
   // ! Core
   sl.registerLazySingleton(() => EventEntityConvertor());
   // ! External
-  sl.registerLazySingleton(() => ClientId(
-      '736849729520-pkbq8keoui439l226buo9s7u0vrjjg1q.apps.googleusercontent.com',
-      ''));
+  sl.registerLazySingleton(
+    () => GoogleSignIn(
+      scopes: [
+        'https://www.googleapis.com/auth/userinfo.email',
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'openid',
+        "https://www.googleapis.com/auth/calendar",
+      ],
+    ),
+  );
 }

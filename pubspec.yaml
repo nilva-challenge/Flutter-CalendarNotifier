@@ -10,7 +10,7 @@ environment:
 
 # Some of these dependencies might not be used in project
 #
-# TODO : Final package shrinking should be done
+# TODO : Final package shrinking should be done (its done)
 
 dependencies:
   flutter:
@@ -20,15 +20,16 @@ dependencies:
   get_it: ^5.0.0
   equatable: ^1.2.5
   dartz: ^0.9.1
-  json_annotation: ^3.0.1
   flutter_bloc: ^6.0.5
   http: ^0.12.2
   connectivity: ^0.4.9+2
-  validators: ^2.0.0+1
 
   googleapis: ^0.55.0
+  # this package is dum it uses web auth on mobile :|
+  # I can do better with google_sign_in :). AND I DID.
   googleapis_auth: ^0.2.12
-  url_launcher: ^5.7.0
+  google_sign_in: ^4.5.3
+  intl: ^0.16.1
 
 
 # Some of these dev_dependencies might not be used in project

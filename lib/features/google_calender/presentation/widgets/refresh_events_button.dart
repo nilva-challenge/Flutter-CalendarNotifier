@@ -7,7 +7,13 @@ class RefreshEventsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<CalenderBloc, CalenderState>(
       builder: (_, state) => (state is CalenderLoading)
-          ? CircularProgressIndicator()
+          ? Container(
+              padding: EdgeInsets.all(20),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: CircularProgressIndicator(),
+              ),
+            )
           : IconButton(
               icon: Icon(
                 Icons.refresh,

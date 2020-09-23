@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_calender/features/google_calender/domain/entities/event_entity.dart';
 import 'package:flutter_calender/features/google_calender/presentation/bloc/calender_bloc.dart';
+import 'package:intl/intl.dart' as intl;
 
 class EventList extends StatelessWidget {
   final List<EventEntity> _cachedList = [];
@@ -15,7 +16,9 @@ class EventList extends StatelessWidget {
         }
         if (_cachedList.length == 0) {
           return Center(
-            child: Text('Fetching events ...'),
+            child: Text(state is CalenderLoading
+                ? 'Fetching events ...'
+                : 'No Calendar Event.'),
           );
         }
         return ListView.builder(
@@ -37,12 +40,29 @@ class EventItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(event.name),
-      subtitle: Text(event.description + '\nRepeat : ${event.recurrence}'),
-      isThreeLine: true,
-      leading: Text(event.dueDate.toLocal().toString()),
-      trailing: Text(event.startDate.toLocal().toString()),
+    final dateWidth = MediaQuery.of(context).size.width * 0.2;
+    return Card(
+      elevation: 10,
+      child: ListTile(
+        title: Text(event.name),
+        subtitle: Text(event.description +
+            '\nRepeat : ${event.recurrence.toString().replaceAll("RepeatMode.", "")}'),
+        isThreeLine: true,
+        leading: Container(
+          width: dateWidth,
+          child: Text(
+            'Due to : ' + intl.DateFormat().add_MEd().format(event.dueDate),
+            maxLines: 3,
+          ),
+        ),
+        trailing: Container(
+          width: dateWidth,
+          child: Text(
+            'Started : ' + intl.DateFormat().add_MEd().format(event.dueDate),
+            maxLines: 3,
+          ),
+        ),
+      ),
     );
   }
 }

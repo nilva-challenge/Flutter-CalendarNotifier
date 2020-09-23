@@ -1,20 +1,21 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:googleapis_auth/auth_io.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:googleapis_auth/src/auth_http_utils.dart' as auth_utils;
+import 'package:http/http.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../domain/entities/event_entity.dart';
 import '../models/event_entity_model.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 const _scopes = const [CalendarApi.CalendarScope];
 const String _calendarId = "primary";
 const String timeZone = "GMT+05:00";
 
 class CalenderRemoteSource {
-  final ClientId client;
-  AutoRefreshingAuthClient _cachedAuthenticatedClient;
+  final GoogleSignIn client;
 
   CalenderRemoteSource(this.client);
 
@@ -75,23 +76,22 @@ class CalenderRemoteSource {
     }
   }
 
-  void prompt(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw AuthException();
-    }
-  }
-
-  Future<AutoRefreshingAuthClient> _authenticate() async {
+  Future<AuthClient> _authenticate() async {
     if (client == null) throw AuthException();
-    var authenticatedClient;
     try {
-      authenticatedClient = _cachedAuthenticatedClient ??
-          await clientViaUserConsent(client, _scopes, prompt);
+      var user = (await client.signInSilently()) ?? (await client.signIn());
+      var authentication = await user.authentication;
+      AccessToken accessToken =
+          AccessToken('Bearer', authentication.accessToken, DateTime.utc(2021));
+      AccessCredentials credentials = AccessCredentials(
+        accessToken,
+        null,
+        _scopes,
+        idToken: authentication.idToken,
+      );
+      return auth_utils.AuthenticatedClient(new Client(), credentials);
     } catch (err) {
       throw AuthException();
     }
-    return authenticatedClient;
   }
 }
