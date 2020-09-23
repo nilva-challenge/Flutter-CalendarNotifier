@@ -21,7 +21,7 @@ class _CalandarPageState extends State<CalandarPage> {
       ),
 
       //? Body
-      body: EventListView(),
+      body: MyEventListView(),
       floatingActionButton: MyFloatingActionButton(),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_notifier/pages/calendar_page.dart';
 
-import 'data/model/credentials.dart';
+import 'data/credentials.dart';
 
 void main() {
   runApp(MyApp());
