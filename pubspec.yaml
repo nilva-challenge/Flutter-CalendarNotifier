@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^6.0.5
   equatable: ^1.2.5
+  http: ^0.12.2
   googleapis: ^0.55.0
   googleapis_auth: ^0.2.12
 

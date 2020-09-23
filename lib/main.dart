@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_notifier/pages/calendar_page.dart';
 
+import 'data/model/credentials.dart';
+
 void main() {
   runApp(MyApp());
+  Credentials().getCalendarEvents();
 }
 
 class MyApp extends StatelessWidget {
