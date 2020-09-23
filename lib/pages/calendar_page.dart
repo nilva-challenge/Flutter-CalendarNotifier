@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_calendar_notifier/components/event_list_view.dart';
+import 'package:flutter_calendar_notifier/components/floating_action_button.dart';
 
 //? Google Sign-in
 
@@ -21,6 +22,7 @@ class _CalandarPageState extends State<CalandarPage> {
 
       //? Body
       body: EventListView(),
+      floatingActionButton: MyFloatingActionButton(),
     );
   }
 }
