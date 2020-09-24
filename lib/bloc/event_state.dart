@@ -18,11 +18,11 @@ class EventLoading extends EventState {
 }
 
 class EventLoaded extends EventState {
-  final FakeEventsModel fakeEventsModel;
+  final MyEventListView myEventListView;
 
-  const EventLoaded(this.fakeEventsModel);
+  const EventLoaded(this.myEventListView);
   @override
-  List<Object> get props => [fakeEventsModel];
+  List<Object> get props => [myEventListView];
 }
 
 class EventError extends EventState {

@@ -19,8 +19,15 @@ class _CalendarPageState extends State<CalendarPage> {
       ),
 
       //* Body
-      body: MyEventListView(),
-      floatingActionButton: MyFloatingActionButton(),
+      body: MyEventListView(
+        eventName: 'Event name',
+        eventDescription: 'Event Description...!',
+      ),
+      floatingActionButton: MyFloatingActionButton(
+        onPressed: () {
+          print('FAB');
+        },
+      ),
     );
   }
 }
