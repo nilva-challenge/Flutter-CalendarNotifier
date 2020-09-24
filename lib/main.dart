@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_calendar_notifier/pages/calandar_event_page.dart';
 import 'package:flutter_calendar_notifier/pages/calendar_page.dart';
 
 import 'data/credentials.dart';
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CalendarEventPage(),
+      home: CalendarPage(),
     );
   }
 }
