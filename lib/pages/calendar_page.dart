@@ -19,6 +19,7 @@ class _CalendarPageState extends State<CalendarPage> {
       ),
 
       //* Body
+      // TODO: Implement BlocBuilder
       body: MyEventListView(
         eventName: 'Event name',
         eventDescription: 'Event Description...!',

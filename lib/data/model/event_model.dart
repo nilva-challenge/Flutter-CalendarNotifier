@@ -1,21 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
-class FakeEventsModel extends Equatable {
+class EventsModel extends Equatable {
   final String eventName;
   final String eventDesciption;
-  final DateTime eventCreated;
+  final DateTime dueDate;
 
-  FakeEventsModel({
+  EventsModel({
     @required this.eventName,
     @required this.eventDesciption,
-    @required this.eventCreated,
+    @required this.dueDate,
   });
 
   @override
   List<Object> get props => [
         eventName,
         eventDesciption,
-        eventCreated,
+        dueDate,
       ];
 }
