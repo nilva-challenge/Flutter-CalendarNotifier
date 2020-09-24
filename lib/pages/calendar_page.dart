@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_calendar_notifier/components/event_list_view.dart';
 import 'package:flutter_calendar_notifier/components/floating_action_button.dart';
 
-class CalandarPage extends StatefulWidget {
+class CalendarPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CalandarPageState();
+  State<StatefulWidget> createState() => _CalendarPageState();
 }
 
-class _CalandarPageState extends State<CalandarPage> {
+class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
