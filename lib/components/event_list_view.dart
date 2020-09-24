@@ -7,8 +7,8 @@ class MyEventListView extends StatelessWidget {
 
   const MyEventListView({
     Key key,
-    @required this.eventName,
-    @required this.eventDescription,
+    this.eventName,
+    this.eventDescription,
   }) : super(key: key);
 
   @override

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_calendar_notifier/bloc/event_bloc.dart';
+import 'package:flutter_calendar_notifier/components/event_list_view.dart';
 import 'package:flutter_calendar_notifier/pages/calendar_page.dart';
 
 import 'data/credentials.dart';
@@ -17,7 +20,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CalendarPage(),
+      home: BlocProvider(
+        create: (context) => EventBloc(
+          MyEventListView(),
+        ),
+        child: CalendarPage(),
+      ),
     );
   }
 }
