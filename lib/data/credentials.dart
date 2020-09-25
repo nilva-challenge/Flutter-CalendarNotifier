@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_calendar_notifier/data/model/event_model.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:googleapis_auth/auth.dart';
@@ -43,7 +44,7 @@ class CalendarClient {
   }
 
 //* Insert Event
-  insert(title, startTime, endTime) {
+  insert(title, startTime, endTime, dueDate) {
     clientViaUserConsent(_clientID, _scopes, prompt).then((AuthClient client) {
       var calendar = CalendarApi(client);
 
@@ -65,23 +66,6 @@ class CalendarClient {
         });
       });
 
-      Future<List<EventModel>> getEvents() {
-        calendar.events.list(calendarId).then((Events events) async {
-          print('EVENTS COUNT: ' + events.items.length.toString());
-          events.items.forEach((Event event) {
-            eventList.add(new EventModel(
-              eventName: event.summary,
-              eventDesciption: event.description,
-              dueDate: event.start.date,
-            ));
-            print("EVENT SUMMARY" + event.summary);
-            print("EVENT TIMEZONE: " + event.created.toString());
-            print("EVENT CREATOR: " + event.creator.email);
-          });
-          return eventList;
-        });
-      }
-
       Event event = Event(); // Create object of event
 
       event.summary = title;
@@ -96,7 +80,6 @@ class CalendarClient {
       end.dateTime = endTime;
       event.end = end;
 
-      // TODO: Creating a new event
       try {
         calendar.events.insert(event, calendarId).then((value) {
           print("EVENT_ADDED${value.status}");
