@@ -10,12 +10,13 @@ import 'data/credentials_service_method.dart';
 void main() {
   runApp(MyApp());
   // Credentials().getCalendarEvents();
-  CalendarClient().insert(
-      "TITLE",
-      DateTime.now(),
-      DateTime.now().add(
-        Duration(days: 1),
-      ));
+  // CalendarClient().insert(
+  //     "TITLE",
+  //     DateTime.now(),
+  //     DateTime.now().add(
+  //       Duration(days: 1),
+  //     ));
+  CalendarClient();
 }
 
 class MyApp extends StatelessWidget {

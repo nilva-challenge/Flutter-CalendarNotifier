@@ -1,29 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../data/credentials.dart';
+import '../data/model/event_model.dart';
+import 'circular_progress_indicator.dart';
+
 class MyEventListView extends StatelessWidget {
-  final String eventName;
-  final String eventDescription;
-
-  const MyEventListView({
-    Key key,
-    this.eventName,
-    this.eventDescription,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (_, index) => ListTile(
-        leading: _eventListleading(),
-        title: Text(eventName),
-        subtitle: Text(eventDescription),
-        trailing: Icon(Icons.more_vert),
-      ),
-    );
-  }
-
-  _eventListleading() {
-    return Icon(Icons.calendar_today);
+    return FutureBuilder(
+        future: CalendarClient().getEvents(),
+        builder: (context, snapshot) {
+          List<EventModel> eventsList = snapshot.data;
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ListView.builder(
+                itemCount: eventsList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Icon(Icons.calendar_today_rounded),
+                    title: eventsList[index].eventName != null
+                        ? Text(eventsList[index].eventName)
+                        : Text('No Title'),
+                    subtitle: eventsList[index].eventDesciption != null
+                        ? Text(eventsList[index].eventDesciption)
+                        : Text('No Description'),
+                    trailing: eventsList[index].dueDate != null
+                        ? Expanded(
+                            child: Text(
+                              eventsList[index].dueDate.toString(),
+                            ),
+                          )
+                        : Text('-'),
+                  );
+                });
+          } else {
+            return MyCircularProgressIndicator();
+          }
+        });
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_calendar_notifier/components/event_list_view.dart';
-import 'package:flutter_calendar_notifier/components/floating_action_button.dart';
+
+import '../components/event_list_view.dart';
+import '../components/floating_action_button.dart';
 
 class CalendarPage extends StatefulWidget {
   @override
@@ -20,10 +21,7 @@ class _CalendarPageState extends State<CalendarPage> {
 
       //* Body
       // TODO: Implement BlocBuilder
-      body: MyEventListView(
-        eventName: 'Event name',
-        eventDescription: 'Event Description...!',
-      ),
+      body: MyEventListView(),
       floatingActionButton: MyFloatingActionButton(
         onPressed: () {
           print('FAB');

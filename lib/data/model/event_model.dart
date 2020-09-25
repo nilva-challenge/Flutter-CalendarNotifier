@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
-class EventsModel extends Equatable {
+class EventModel extends Equatable {
   final String eventName;
   final String eventDesciption;
   final DateTime dueDate;
 
-  EventsModel({
+  EventModel({
     @required this.eventName,
     @required this.eventDesciption,
     @required this.dueDate,
