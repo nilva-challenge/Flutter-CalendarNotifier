@@ -16,21 +16,23 @@ class MyEventListView extends StatelessWidget {
             return ListView.builder(
                 itemCount: eventsList.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Icon(Icons.calendar_today_rounded),
-                    title: eventsList[index].eventName != null
-                        ? Text(eventsList[index].eventName)
-                        : Text('No Title'),
-                    subtitle: eventsList[index].eventDesciption != null
-                        ? Text(eventsList[index].eventDesciption)
-                        : Text('No Description'),
-                    trailing: eventsList[index].dueDate != null
-                        ? Expanded(
-                            child: Text(
-                              eventsList[index].dueDate.toString(),
-                            ),
-                          )
-                        : Text('-'),
+                  return Card(
+                    child: ListTile(
+                      leading: Icon(Icons.calendar_today_rounded),
+                      title: eventsList[index].eventName != null
+                          ? Text(eventsList[index].eventName)
+                          : Text('No Title'),
+                      subtitle: eventsList[index].eventDesciption != null
+                          ? Text(eventsList[index].eventDesciption)
+                          : Text('No Description'),
+                      trailing: eventsList[index].dueDate != null
+                          ? Expanded(
+                              child: Text(
+                                eventsList[index].dueDate.year.toString(),
+                              ),
+                            )
+                          : Text('No Date'),
+                    ),
                   );
                 });
           } else {

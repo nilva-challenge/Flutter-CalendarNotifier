@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CalendarClient {
   static const _scopes = const [CalendarApi.CalendarScope];
+  List<EventModel> eventList = new List<EventModel>();
 
   //* Get Events Authentication
   final _clientID = new ClientId(
@@ -15,8 +16,6 @@ class CalendarClient {
       "");
 
   Future<List<EventModel>> getEvents() async {
-    List<EventModel> eventList = new List<EventModel>();
-
     await clientViaUserConsent(_clientID, _scopes, prompt)
         .then((AuthClient client) {
       var calendar = CalendarApi(client);
@@ -44,74 +43,74 @@ class CalendarClient {
   }
 
 //* Insert Event
-  // insert(title, startTime, endTime) {
-  //   clientViaUserConsent(_clientID, _scopes, prompt).then((AuthClient client) {
-  //     var calendar = CalendarApi(client);
+  insert(title, startTime, endTime) {
+    clientViaUserConsent(_clientID, _scopes, prompt).then((AuthClient client) {
+      var calendar = CalendarApi(client);
 
-  //     calendar.calendarList.list().then((value) => print("VAL________$value"));
+      calendar.calendarList.list().then((value) => print("VAL________$value"));
 
-  //     String calendarId = "primary";
+      String calendarId = "primary";
 
-  //     calendar.events.list(calendarId).then((Events events) async {
-  //       print('EVENTS COUNT: ' + events.items.length.toString());
-  //       events.items.forEach((Event event) {
-  //         eventList.add(new EventModel(
-  //           eventName: event.summary,
-  //           eventDesciption: event.description,
-  //           dueDate: event.start.date,
-  //         ));
-  //         print("EVENT SUMMARY" + event.summary);
-  //         print("EVENT TIMEZONE: " + event.created.toString());
-  //         print("EVENT CREATOR: " + event.creator.email);
-  //       });
-  //     });
+      calendar.events.list(calendarId).then((Events events) async {
+        print('EVENTS COUNT: ' + events.items.length.toString());
+        events.items.forEach((Event event) {
+          eventList.add(new EventModel(
+            eventName: event.summary,
+            eventDesciption: event.description,
+            dueDate: event.start.date,
+          ));
+          print("EVENT SUMMARY" + event.summary);
+          print("EVENT TIMEZONE: " + event.created.toString());
+          print("EVENT CREATOR: " + event.creator.email);
+        });
+      });
 
-  //     Future<List<EventModel>> getEvents() {
-  //       calendar.events.list(calendarId).then((Events events) async {
-  //         print('EVENTS COUNT: ' + events.items.length.toString());
-  //         events.items.forEach((Event event) {
-  //           eventList.add(new EventModel(
-  //             eventName: event.summary,
-  //             eventDesciption: event.description,
-  //             dueDate: event.start.date,
-  //           ));
-  //           print("EVENT SUMMARY" + event.summary);
-  //           print("EVENT TIMEZONE: " + event.created.toString());
-  //           print("EVENT CREATOR: " + event.creator.email);
-  //         });
-  //         return eventList;
-  //       });
-  //     }
+      Future<List<EventModel>> getEvents() {
+        calendar.events.list(calendarId).then((Events events) async {
+          print('EVENTS COUNT: ' + events.items.length.toString());
+          events.items.forEach((Event event) {
+            eventList.add(new EventModel(
+              eventName: event.summary,
+              eventDesciption: event.description,
+              dueDate: event.start.date,
+            ));
+            print("EVENT SUMMARY" + event.summary);
+            print("EVENT TIMEZONE: " + event.created.toString());
+            print("EVENT CREATOR: " + event.creator.email);
+          });
+          return eventList;
+        });
+      }
 
-  //     Event event = Event(); // Create object of event
+      Event event = Event(); // Create object of event
 
-  //     event.summary = title;
+      event.summary = title;
 
-  //     EventDateTime start = new EventDateTime();
-  //     start.dateTime = startTime;
-  //     start.timeZone = "GMT+03:30";
-  //     event.start = start;
+      EventDateTime start = new EventDateTime();
+      start.dateTime = startTime;
+      start.timeZone = "GMT+03:30";
+      event.start = start;
 
-  //     EventDateTime end = new EventDateTime();
-  //     end.timeZone = "GMT+03:30";
-  //     end.dateTime = endTime;
-  //     event.end = end;
+      EventDateTime end = new EventDateTime();
+      end.timeZone = "GMT+03:30";
+      end.dateTime = endTime;
+      event.end = end;
 
-  //     // TODO: Creating a new event
-  //     // try {
-  //     //   calendar.events.insert(event, calendarId).then((value) {
-  //     //     print("EVENT_ADDED${value.status}");
-  //     //     if (value.status == "confirmed") {
-  //     //       log('Event added in google calendar');
-  //     //     } else {
-  //     //       log("Unable to add event in google calendar");
-  //     //     }
-  //     //   });
-  //     // } catch (e) {
-  //     //   log('Error creating event $e');
-  //     // }
-  //   });
-  // }
+      // TODO: Creating a new event
+      try {
+        calendar.events.insert(event, calendarId).then((value) {
+          print("EVENT_ADDED${value.status}");
+          if (value.status == "confirmed") {
+            log('Event added in google calendar');
+          } else {
+            log("Unable to add event in google calendar");
+          }
+        });
+      } catch (e) {
+        log('Error creating event $e');
+      }
+    });
+  }
 
   void prompt(String url) async {
     print("Please go to the following URL and grant access:");
