@@ -3,12 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/event_bloc.dart';
 import 'components/event_list_view.dart';
-import 'data/credentials.dart';
 import 'pages/calendar_page.dart';
 
 void main() {
   runApp(MyApp());
-  CalendarClient();
 }
 
 class MyApp extends StatelessWidget {

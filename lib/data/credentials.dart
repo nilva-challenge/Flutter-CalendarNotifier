@@ -1,20 +1,18 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_calendar_notifier/data/model/event_model.dart';
 import 'package:googleapis/calendar/v3.dart';
 import 'package:googleapis_auth/auth.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'model/event_model.dart';
 
 class CalendarClient {
   static const _scopes = const [CalendarApi.CalendarScope];
   List<EventModel> eventList = new List<EventModel>();
 
   //* Get Events Authentication
-  final _clientID = new ClientId(
-      "31116624588-n2sbace1ec773jgk5l5j6qfgovorfnkd.apps.googleusercontent.com",
-      "");
+  final _clientID = new ClientId("_", "");
 
   Future<List<EventModel>> getEvents() async {
     await clientViaUserConsent(_clientID, _scopes, prompt)

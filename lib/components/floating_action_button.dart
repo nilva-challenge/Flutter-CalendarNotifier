@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../data/credentials.dart';
+
 class MyFloatingActionButton extends StatelessWidget {
-  final onPressed;
-
-  const MyFloatingActionButton({
-    Key key,
-    @required this.onPressed,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       child: Icon(Icons.add),
-      onPressed: onPressed,
+      onPressed: () {
+        CalendarClient().insert(
+          "TITLE",
+          DateTime.now(),
+          DateTime.now().add(Duration(days: 1)),
+          DateTime.now().add(Duration(hours: 2)),
+        );
+      },
     );
   }
 }
