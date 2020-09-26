@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/event_bloc.dart';
-import 'components/event_list_view.dart';
+import 'cubit/eventcubit_cubit.dart';
+import 'data/credentials.dart';
 import 'pages/calendar_page.dart';
 
 void main() {
@@ -19,9 +19,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: BlocProvider(
-        create: (context) => EventBloc(
-          MyEventListView(),
-        ),
+        create: (context) => EventcubitCubit(CalendarClient()),
         child: CalendarPage(),
       ),
     );

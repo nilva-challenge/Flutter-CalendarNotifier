@@ -2,28 +2,29 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_calendar_notifier/components/event_list_view.dart';
+
+import '../data/credentials.dart';
+import '../data/model/event_model.dart';
 
 part 'event_event.dart';
 part 'event_state.dart';
 
 class EventBloc extends Bloc<EventEvent, EventState> {
-  final MyEventListView myEventListView;
+  final CalendarClient calendarClient;
 
-  EventBloc(this.myEventListView) : super(EventInitial());
+  EventBloc(this.calendarClient) : super(EventInitial());
 
   @override
   Stream<EventState> mapEventToState(
     EventEvent event,
   ) async* {
-    yield EventLoading();
+    yield EventInitial();
     if (event is GetEvents) {
-      try {
-        // TODO: get events from Google calendar
-        yield EventLoaded(myEventListView);
-      } on Exception {
-        yield EventError('Something went worng');
-      }
+      yield EventLoading();
+      calendarClient.getEvents();
+      yield EventLoaded(calendarClient.eventList);
+    } else {
+      EventError('Something went wrong');
     }
   }
 }

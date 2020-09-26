@@ -14,6 +14,7 @@ class CalendarClient {
   //* Get Events Authentication
   final _clientID = new ClientId("_", "");
 
+//* Get Events
   Future<List<EventModel>> getEvents() async {
     await clientViaUserConsent(_clientID, _scopes, prompt)
         .then((AuthClient client) {
@@ -83,6 +84,7 @@ class CalendarClient {
           print("EVENT_ADDED${value.status}");
           if (value.status == "confirmed") {
             log('Event added in google calendar');
+            this.getEvents();
           } else {
             log("Unable to add event in google calendar");
           }

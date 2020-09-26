@@ -5,9 +5,9 @@ abstract class EventEvent extends Equatable {
 }
 
 class GetEvents extends EventEvent {
-  final int eventCount;
+  final EventModel eventModel;
 
-  GetEvents(this.eventCount);
+  GetEvents(this.eventModel);
   @override
-  List<Object> get props => [eventCount];
+  List<Object> get props => [eventModel];
 }

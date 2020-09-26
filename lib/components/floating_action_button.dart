@@ -9,7 +9,7 @@ class MyFloatingActionButton extends StatelessWidget {
       child: Icon(Icons.add),
       onPressed: () {
         CalendarClient().insert(
-          "TITLE",
+          "NEW TITLE",
           DateTime.now(),
           DateTime.now().add(Duration(days: 1)),
           DateTime.now().add(Duration(hours: 2)),

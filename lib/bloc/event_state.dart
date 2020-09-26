@@ -13,16 +13,14 @@ class EventInitial extends EventState {
 
 class EventLoading extends EventState {
   const EventLoading();
-  @override
-  List<Object> get props => [];
 }
 
 class EventLoaded extends EventState {
-  final MyEventListView myEventListView;
+  final List<EventModel> eventList;
 
-  const EventLoaded(this.myEventListView);
+  const EventLoaded(this.eventList);
   @override
-  List<Object> get props => [myEventListView];
+  List<Object> get props => [eventList];
 }
 
 class EventError extends EventState {
