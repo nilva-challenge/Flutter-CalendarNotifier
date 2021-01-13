@@ -2,6 +2,13 @@
   <library name="Dart Packages" type="DartPackagesLibraryType">
     <properties>
       <option name="packageNameToDirsMap">
+        <entry key="_discoveryapis_commons">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/_discoveryapis_commons-0.2.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="_fe_analyzer_shared">
           <value>
             <list>
@@ -128,17 +135,17 @@
             </list>
           </value>
         </entry>
-        <entry key="flutter_calendar">
-          <value>
-            <list>
-              <option value="$PROJECT_DIR$/../AndroidStudioProjects/flutter_calendar/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="flutter_driver">
           <value>
             <list>
               <option value="$PROJECT_DIR$/../development/flutter/packages/flutter_driver/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_holo_date_picker">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flutter_holo_date_picker-0.3.0/lib" />
             </list>
           </value>
         </entry>
@@ -156,10 +163,45 @@
             </list>
           </value>
         </entry>
+        <entry key="get">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/get-3.24.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="glob">
           <value>
             <list>
               <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/glob-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="googleapis">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/googleapis-0.56.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="googleapis_auth">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/googleapis_auth-0.2.12/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="http">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/http-0.12.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="http_parser">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/http_parser-3.1.4/lib" />
             </list>
           </value>
         </entry>
@@ -404,6 +446,7 @@
       </option>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/_discoveryapis_commons-0.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/_fe_analyzer_shared-12.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/analyzer-0.40.6/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/archive-2.0.13/lib" />
@@ -421,7 +464,13 @@
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0-nullsafety.3/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/file-6.0.0-nullsafety.4/lib" />
+      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/flutter_holo_date_picker-0.3.0/lib" />
+      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/get-3.24.0/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/glob-1.2.0/lib" />
+      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/googleapis-0.56.1/lib" />
+      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/googleapis_auth-0.2.12/lib" />
+      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/http-0.12.2/lib" />
+      <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/http_parser-3.1.4/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/io-0.3.4/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/js-0.6.3-nullsafety.3/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/json_rpc_2-2.2.2/lib" />
@@ -454,7 +503,6 @@
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/web_socket_channel-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/webdriver-2.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../.pub-cache/hosted/pub.dartlang.org/yaml-2.2.1/lib" />
-      <root url="file://$PROJECT_DIR$/../AndroidStudioProjects/flutter_calendar/lib" />
       <root url="file://$PROJECT_DIR$/../development/flutter/bin/cache/pkg/sky_engine/lib" />
       <root url="file://$PROJECT_DIR$/../development/flutter/packages/flutter/lib" />
       <root url="file://$PROJECT_DIR$/../development/flutter/packages/flutter_driver/lib" />

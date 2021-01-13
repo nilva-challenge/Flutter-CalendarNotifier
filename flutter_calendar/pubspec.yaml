@@ -23,6 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  get: ^3.24.0
+  flutter_holo_date_picker: ^0.3.0
+  googleapis: any
+  googleapis_auth: any
 
 
   # The following adds the Cupertino Icons font to your application.

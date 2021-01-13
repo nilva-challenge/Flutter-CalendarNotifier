@@ -13,7 +13,7 @@ import 'package:googleapis_auth/auth.dart';
 
 import 'add_event_screen.dart';
 
-class MyApp extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
 
   static const _scopes = const [calendar.CalendarApi.CalendarScope];
   @override
