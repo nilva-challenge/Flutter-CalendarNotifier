@@ -71,6 +71,7 @@ class AddEventScreen extends StatelessWidget {
               ),
               SizedBox(height: 40,),
               RaisedButton(onPressed: (){
+                _addEventController.insert();
 
               },
                 child: Text('insert'),
